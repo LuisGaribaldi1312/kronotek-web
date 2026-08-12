@@ -558,8 +558,8 @@ function renderCart(){
       </div>
     </div>`).join('') : `<div class="empty">Tu carrito está vacío.</div>`;
 }
-function openCart(){ document.getElementById('cartOverlay').classList.add('active'); }
-function closeCart(){ document.getElementById('cartOverlay').classList.remove('active'); }
+function openCart(){ document.getElementById('cartOverlay').classList.add('active'); document.getElementById('cartDrawer').classList.add('active'); }
+function closeCart(){ document.getElementById('cartOverlay').classList.remove('active'); document.getElementById('cartDrawer').classList.remove('active'); }
 document.getElementById('cartBtn').onclick = openCart;
 
 async function checkout(){
