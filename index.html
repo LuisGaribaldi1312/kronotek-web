@@ -435,7 +435,7 @@ footer{border-top:1px solid var(--line); margin-top:60px; padding:40px 24px; tex
 ------------------------------------------------------ */
 const SUPABASE_URL = "https://cidkwjwlgznxskqoulex.supabase.co/rest/v1/";
 const SUPABASE_ANON_KEY = "sb_publishable_HOEALsEDhSMZDbRrv-djQw_9bSbhKDQ";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /* ---------------- STATE ---------------- */
 let PRODUCTS = [];
@@ -457,27 +457,27 @@ const SEED_PRODUCTS = [
 
 /* ---------------- SUPABASE HELPERS ---------------- */
 async function loadAll(){
-  const {data: prods} = await supabase.from('products').select('*').order('created_at', {ascending:true});
+  const {data: prods} = await sb.from('products').select('*').order('created_at', {ascending:true});
   if(prods && prods.length){
     PRODUCTS = prods.map(p=>({id:p.id, name:p.name, cat:p.cat, price:p.price, icon:p.icon, desc:p.description}));
   } else {
     // Primera vez: siembra el catálogo de ejemplo en la base de datos
     for(const p of SEED_PRODUCTS){
-      await supabase.from('products').insert({name:p.name, cat:p.cat, price:p.price, icon:p.icon, description:p.desc});
+      await sb.from('products').insert({name:p.name, cat:p.cat, price:p.price, icon:p.icon, description:p.desc});
     }
-    const {data: seeded} = await supabase.from('products').select('*').order('created_at', {ascending:true});
+    const {data: seeded} = await sb.from('products').select('*').order('created_at', {ascending:true});
     PRODUCTS = (seeded||[]).map(p=>({id:p.id, name:p.name, cat:p.cat, price:p.price, icon:p.icon, desc:p.description}));
   }
 
-  const {data: orders} = await supabase.from('orders').select('*').order('created_at', {ascending:false});
+  const {data: orders} = await sb.from('orders').select('*').order('created_at', {ascending:false});
   ORDERS = (orders||[]).map(o=>({id:o.id, date:new Date(o.created_at).toLocaleString('es-MX'), customer:o.customer, email:o.email, items:o.items, total:o.total, status:o.status}));
 
-  const {data: msgs} = await supabase.from('messages').select('*').order('created_at', {ascending:false});
+  const {data: msgs} = await sb.from('messages').select('*').order('created_at', {ascending:false});
   MESSAGES = (msgs||[]).map(m=>({id:m.id, date:new Date(m.created_at).toLocaleString('es-MX'), name:m.name, phone:m.phone, email:m.email, pref:m.pref, text:m.text, reply:m.reply, status:m.status}));
 
   renderFeatured(); renderCatalog(); renderFilters();
 
-  const {data:{session}} = await supabase.auth.getSession();
+  const {data:{session}} = await sb.auth.getSession();
   if(session){ CURRENT_USER = {email:session.user.email, name:session.user.user_metadata?.name || session.user.email}; updateUserBtn(); }
 }
 
@@ -572,7 +572,7 @@ async function checkout(){
     total: CART.reduce((a,c)=>a+c.qty*c.price,0),
     status: 'Nuevo'
   };
-  const {error} = await supabase.from('orders').insert(order);
+  const {error} = await sb.from('orders').insert(order);
   if(error){ showToast('Error al enviar el pedido'); console.error(error); return; }
   await loadAll();
   CART = []; renderCart(); closeCart();
@@ -602,12 +602,12 @@ async function authSubmit(){
   if(!email || !pass){ showToast('Completa correo y contraseña'); return; }
 
   if(authMode==='register'){
-    const {data, error} = await supabase.auth.signUp({email, password:pass, options:{data:{name}}});
+    const {data, error} = await sb.auth.signUp({email, password:pass, options:{data:{name}}});
     if(error){ showToast(error.message); return; }
     CURRENT_USER = {name: name || email, email};
     showToast('Cuenta creada. ¡Bienvenido!');
   } else {
-    const {data, error} = await supabase.auth.signInWithPassword({email, password:pass});
+    const {data, error} = await sb.auth.signInWithPassword({email, password:pass});
     if(error){ showToast('Correo o contraseña incorrectos'); return; }
     CURRENT_USER = {name: data.user.user_metadata?.name || data.user.email, email: data.user.email};
     showToast('Sesión iniciada');
@@ -621,7 +621,7 @@ function updateUserBtn(){
 }
 document.getElementById('userBtn').onclick = async ()=>{
   if(CURRENT_USER){
-    if(confirm('¿Cerrar sesión?')){ await supabase.auth.signOut(); CURRENT_USER = null; updateUserBtn(); showToast('Sesión cerrada'); }
+    if(confirm('¿Cerrar sesión?')){ await sb.auth.signOut(); CURRENT_USER = null; updateUserBtn(); showToast('Sesión cerrada'); }
   } else { openAuth('login'); }
 };
 
@@ -636,7 +636,7 @@ document.getElementById('contactForm').addEventListener('submit', async e=>{
     text:document.getElementById('cf_msg').value,
     status:'Nuevo'
   };
-  const {error} = await supabase.from('messages').insert(msg);
+  const {error} = await sb.from('messages').insert(msg);
   if(error){ showToast('Error al enviar el mensaje'); console.error(error); return; }
   await loadAll();
   e.target.reset();
@@ -670,7 +670,7 @@ async function addProduct(){
   const name = document.getElementById('p_name').value.trim();
   const price = parseFloat(document.getElementById('p_price').value);
   if(!name || !price){ showToast('Completa nombre y precio'); return; }
-  const {error} = await supabase.from('products').insert({
+  const {error} = await sb.from('products').insert({
     name, price,
     cat:document.getElementById('p_cat').value,
     icon:document.getElementById('p_icon').value || '💻',
@@ -682,7 +682,7 @@ async function addProduct(){
   showToast('Producto agregado');
 }
 async function deleteProduct(id){
-  await supabase.from('products').delete().eq('id', id);
+  await sb.from('products').delete().eq('id', id);
   await loadAll(); renderAdmin();
 }
 function renderAdmin(){
@@ -711,7 +711,7 @@ function renderAdmin(){
 async function sendReply(id){
   const val = document.getElementById('reply_'+id).value.trim();
   if(!val) return;
-  await supabase.from('messages').update({reply:val, status:'Respondido'}).eq('id', id);
+  await sb.from('messages').update({reply:val, status:'Respondido'}).eq('id', id);
   await loadAll(); renderAdmin();
   showToast('Respuesta guardada (nota: para enviarla por correo real, se puede conectar un servicio de email más adelante)');
 }
