@@ -354,6 +354,7 @@ footer{border-top:1px solid var(--line); margin-top:60px; padding:40px 24px; tex
       <button class="nav-btn active" data-view="home">Inicio</button>
       <button class="nav-btn" data-view="catalog">Catálogo</button>
       <button class="nav-btn" data-view="contact">Contacto</button>
+      <button class="nav-btn" data-view="admin">Panel administrador</button>
     </nav>
     <div class="nav-actions">
       <button class="icon-btn" id="userBtn" title="Mi cuenta">👤</button>
@@ -443,18 +444,18 @@ footer{border-top:1px solid var(--line); margin-top:60px; padding:40px 24px; tex
 
     <div id="adminPanel" style="display:none;">
       <div class="section-head" style="margin-top:20px;">
-        <div><h2>Panel de administración</h2><p>Gestiona productos, pedidos y mensajes</p></div>
+        <div><h2>Panel de administración</h2><p>Gestiona el catálogo, pedidos realizados y mensajes de contacto</p></div>
         <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Cerrar sesión</button>
       </div>
       <div class="admin-tabs">
-        <button class="chip active" data-atab="products">Productos</button>
+        <button class="chip active" data-atab="products">Catálogo</button>
         <button class="chip" data-atab="orders">Pedidos</button>
         <button class="chip" data-atab="messages">Mensajes</button>
       </div>
 
       <div id="atab-products">
         <div class="panel" style="margin-bottom:20px;">
-          <h3 style="margin-bottom:14px; font-size:16px;">Agregar producto</h3>
+          <h3 style="margin-bottom:14px; font-size:16px;">Administrar catálogo</h3>
           <div class="row2">
             <div class="field"><label>Nombre</label><input id="p_name" placeholder="Ej. Windows 11 Pro"></div>
             <div class="field"><label>Categoría</label>
@@ -472,10 +473,12 @@ footer{border-top:1px solid var(--line); margin-top:60px; padding:40px 24px; tex
       </div>
 
       <div id="atab-orders" style="display:none;">
+        <div class="panel" style="margin-bottom:20px;"><h3 style="margin-bottom:6px; font-size:16px;">Pedidos realizados</h3><p style="color:var(--text-dim);font-size:13px;">Consulta los pedidos enviados desde el carrito.</p></div>
         <table class="admin-table" id="ordersTable"></table>
       </div>
 
       <div id="atab-messages" style="display:none;">
+        <div class="panel" style="margin-bottom:20px;"><h3 style="margin-bottom:6px; font-size:16px;">Mensajes de contacto</h3><p style="color:var(--text-dim);font-size:13px;">Consulta y responde los mensajes enviados desde el formulario de contacto.</p></div>
         <table class="admin-table" id="messagesTable"></table>
       </div>
     </div>
