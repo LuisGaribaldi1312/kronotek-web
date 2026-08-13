@@ -827,7 +827,7 @@ loadAll();
 (function(){
   const canvas = document.getElementById('lightCanvas');
   const ctx = canvas.getContext('2d');
-  let w, h, dpr, fontSize, columns, drops;
+  let w, h, dpr, fontSize, columns, drops, speeds;
 
   const chars = "01KRONOTEK<>/{}[]#$%&アイウエオカキクケコサシスセソ";
   const charArr = chars.split('');
@@ -842,6 +842,7 @@ loadAll();
     fontSize = w < 640 ? 15 : 17;
     columns = Math.ceil(w / fontSize);
     drops = new Array(columns).fill(0).map(()=> Math.floor(Math.random() * -40));
+    speeds = new Array(columns).fill(0).map(()=> 0.25 + Math.random()*0.9);
 
     ctx.fillStyle = '#04070d';
     ctx.fillRect(0,0,w,h);
@@ -853,22 +854,24 @@ loadAll();
 
   function draw(){
     // desvanece el fotograma anterior (deja la estela del código cayendo)
-    ctx.fillStyle = 'rgba(4,7,13,0.09)';
+    ctx.fillStyle = 'rgba(4,7,13,0.14)';
     ctx.fillRect(0,0,w,h);
 
     ctx.font = fontSize + 'px monospace';
     ctx.textAlign = 'center';
 
     for(let i=0; i<columns; i++){
+      if(Math.random() > 0.55){ drops[i] += speeds[i] * (reduceMotion?0.4:1); continue; }
+
       const char = charArr[Math.floor(Math.random()*charArr.length)];
       const x = i*fontSize + fontSize/2;
       const y = drops[i]*fontSize;
 
-      ctx.fillStyle = Math.random() > 0.94 ? 'rgba(210,235,255,0.95)' : 'rgba(46,139,255,0.6)';
+      ctx.fillStyle = Math.random() > 0.95 ? 'rgba(190,220,255,0.7)' : 'rgba(46,139,255,0.4)';
       ctx.fillText(char, x, y);
 
-      if(y > h && Math.random() > 0.975){ drops[i] = 0; }
-      drops[i] += reduceMotion ? 0.3 : 0.85;
+      if(y > h && Math.random() > 0.985){ drops[i] = Math.floor(Math.random()*-20); speeds[i] = 0.25 + Math.random()*0.9; }
+      drops[i] += speeds[i] * (reduceMotion?0.4:1);
     }
 
     requestAnimationFrame(draw);
