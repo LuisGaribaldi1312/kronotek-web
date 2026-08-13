@@ -165,7 +165,15 @@ main{max-width:1200px; margin:0 auto; padding:0 24px 100px;}
   animation:fadeUp .6s ease both;
 }
 .card:hover{border-color:rgba(46,139,255,.4); transform:translateY(-5px) scale(1.01); box-shadow:var(--shadow), 0 0 24px rgba(46,139,255,.15);}
-.trust-item .ico{width:36px; height:36px; margin:0 auto 10px; color:var(--blue-bright); animation:floatY 3.6s ease-in-out infinite;}
+.trust-item .ico{
+  width:60px; height:60px; margin:0 auto 14px; border-radius:16px;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(160deg, rgba(46,139,255,.2), rgba(46,139,255,.03));
+  border:1px solid rgba(46,139,255,.28);
+  color:var(--blue-bright);
+  box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
+}
+.trust-item .ico svg{width:28px; height:28px;}
 .trust-item:nth-child(2) .ico{animation-delay:.3s;}
 .trust-item:nth-child(3) .ico{animation-delay:.6s;}
 .trust-item:nth-child(4) .ico{animation-delay:.9s;}
@@ -370,10 +378,10 @@ footer{border-top:1px solid var(--line); margin-top:60px; padding:40px 24px; tex
         <button class="btn btn-ghost" onclick="goto('contact')">Hablar con un asesor</button>
       </div>
       <div class="trust-row reveal">
-        <div class="trust-item"><div class="ico">🛡️</div><div class="t">Licencias 100% originales</div><div class="d">Software legítimo garantizado</div></div>
-        <div class="trust-item"><div class="ico">🎖️</div><div class="t">Pago único</div><div class="d">Sin suscripciones ocultas</div></div>
-        <div class="trust-item"><div class="ico">📅</div><div class="t">Activación garantizada</div><div class="d">Instalamos y validamos</div></div>
-        <div class="trust-item"><div class="ico">🎧</div><div class="t">Asesoría personalizada</div><div class="d">Te acompañamos siempre</div></div>
+        <div class="trust-item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg></div><div class="t">Licencias 100% originales</div><div class="d">Software legítimo garantizado</div></div>
+        <div class="trust-item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5.5"/><path d="M9 12.8L7 21l5-2.5L17 21l-2-8.2"/><path d="M9.5 8l1.7 1.8L14.5 6"/></svg></div><div class="t">Pago único</div><div class="d">Sin suscripciones ocultas</div></div>
+        <div class="trust-item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v3"/><path d="M16 3v3"/><path d="M8.5 14l2 2 4.5-4.5"/></svg></div><div class="t">Activación garantizada</div><div class="d">Instalamos y validamos</div></div>
+        <div class="trust-item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0116 0v1"/><rect x="3" y="13" width="4.5" height="6" rx="1.5"/><rect x="16.5" y="13" width="4.5" height="6" rx="1.5"/><path d="M20 19.5c0 2-1.8 2.7-4.5 2.7"/></svg></div><div class="t">Asesoría personalizada</div><div class="d">Te acompañamos siempre</div></div>
       </div>
     </div>
 
@@ -416,10 +424,10 @@ footer{border-top:1px solid var(--line); margin-top:60px; padding:40px 24px; tex
       </div>
       <div class="panel">
         <h3 style="margin-bottom:14px; font-size:16px;">Otras formas de contacto</h3>
-        <div class="contact-info-item"><div class="ico">📞</div><div><div class="t">Teléfono</div><div class="d">Agrega tu número real aquí</div></div></div>
-        <div class="contact-info-item"><div class="ico">✉️</div><div><div class="t">Correo</div><div class="d">contacto@kronotek.com</div></div></div>
-        <div class="contact-info-item"><div class="ico">📍</div><div><div class="t">Ubicación</div><div class="d">Zona de cobertura local</div></div></div>
-        <div class="contact-info-item"><div class="ico">🕒</div><div><div class="t">Horario</div><div class="d">Lun–Sáb, 9:00–18:00</div></div></div>
+        <div class="contact-info-item"><div class="ico">📞</div><div><div class="t">Teléfono</div><div class="d">998 437 1180 - 998 221 9571</div></div></div>
+        <div class="contact-info-item"><div class="ico">✉️</div><div><div class="t">Web</div><div class="d">https://kronotek-web.vercel.app/</div></div></div>
+        <div class="contact-info-item"><div class="ico">📍</div><div><div class="t">Ubicación</div><div class="d">Playa del Carmen, Qroo</div></div></div>
+        <div class="contact-info-item"><div class="ico">🕒</div><div><div class="t">Horario</div><div class="d">Lun–Sáb, 9:00 – 21:00 Hrs</div></div></div>
       </div>
     </div>
   </section>
@@ -815,50 +823,53 @@ function showToast(text){
 /* ---------------- INIT ---------------- */
 loadAll();
 
-/* ---------------- PUNTO DE LUZ CON ESTELA ---------------- */
+/* ---------------- LLUVIA DE CÓDIGO (estilo Matrix) ---------------- */
 (function(){
   const canvas = document.getElementById('lightCanvas');
   const ctx = canvas.getContext('2d');
-  let w, h, dpr;
-  function resize(){
+  let w, h, dpr, fontSize, columns, drops;
+
+  const chars = "01KRONOTEK<>/{}[]#$%&アイウエオカキクケコサシスセソ";
+  const charArr = chars.split('');
+
+  function setup(){
     dpr = Math.min(window.devicePixelRatio||1, 2);
     w = window.innerWidth; h = window.innerHeight;
     canvas.width = w*dpr; canvas.height = h*dpr;
     canvas.style.width = w+'px'; canvas.style.height = h+'px';
     ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    fontSize = w < 640 ? 15 : 17;
+    columns = Math.ceil(w / fontSize);
+    drops = new Array(columns).fill(0).map(()=> Math.floor(Math.random() * -40));
+
     ctx.fillStyle = '#04070d';
     ctx.fillRect(0,0,w,h);
   }
-  resize();
-  window.addEventListener('resize', resize);
+  setup();
+  window.addEventListener('resize', setup);
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let t = 0;
 
   function draw(){
-    t += reduceMotion ? 0.004 : 0.008;
-
-    // recorrido orgánico que cubre toda la pantalla (curva de Lissajous)
-    const margin = 60;
-    const x = margin + (w-2*margin) * (0.5 + 0.5*Math.sin(t*0.9) * Math.cos(t*0.35));
-    const y = margin + (h-2*margin) * (0.5 + 0.5*Math.sin(t*0.6 + 1.3) * Math.sin(t*0.23));
-
-    // desvanece ligeramente el fotograma anterior para dejar estela
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'rgba(4,7,13,0.08)';
+    // desvanece el fotograma anterior (deja la estela del código cayendo)
+    ctx.fillStyle = 'rgba(4,7,13,0.09)';
     ctx.fillRect(0,0,w,h);
 
-    // punto de luz con resplandor
-    ctx.globalCompositeOperation = 'lighter';
-    const glow = ctx.createRadialGradient(x,y,0,x,y,26);
-    glow.addColorStop(0,'rgba(150,200,255,0.9)');
-    glow.addColorStop(.35,'rgba(46,139,255,0.5)');
-    glow.addColorStop(1,'rgba(46,139,255,0)');
-    ctx.fillStyle = glow;
-    ctx.beginPath(); ctx.arc(x,y,26,0,Math.PI*2); ctx.fill();
+    ctx.font = fontSize + 'px monospace';
+    ctx.textAlign = 'center';
 
-    ctx.fillStyle = 'rgba(255,255,255,0.95)';
-    ctx.beginPath(); ctx.arc(x,y,2.6,0,Math.PI*2); ctx.fill();
+    for(let i=0; i<columns; i++){
+      const char = charArr[Math.floor(Math.random()*charArr.length)];
+      const x = i*fontSize + fontSize/2;
+      const y = drops[i]*fontSize;
+
+      ctx.fillStyle = Math.random() > 0.94 ? 'rgba(210,235,255,0.95)' : 'rgba(46,139,255,0.6)';
+      ctx.fillText(char, x, y);
+
+      if(y > h && Math.random() > 0.975){ drops[i] = 0; }
+      drops[i] += reduceMotion ? 0.3 : 0.85;
+    }
 
     requestAnimationFrame(draw);
   }
