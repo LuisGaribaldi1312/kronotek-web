@@ -900,13 +900,13 @@ loadAll();
     ctx.textAlign = 'center';
 
     for(let i=0; i<columns; i++){
-      if(Math.random() > 0.25){ drops[i] += speeds[i] * (reduceMotion?0.4:1); continue; }
+      if(Math.random() > 0.65){ drops[i] += speeds[i] * (reduceMotion?0.4:1); continue; }
 
       const char = charArr[Math.floor(Math.random()*charArr.length)];
       const x = i*fontSize + fontSize/2;
       const y = drops[i]*fontSize;
 
-      ctx.fillStyle = Math.random() > 0.95 ? 'rgba(190,220,255,0.7)' : 'rgba(46,139,255,0.4)';
+      ctx.fillStyle = Math.random() > 0.65 ? 'rgba(190,220,255,0.7)' : 'rgba(46,139,255,0.4)';
       ctx.fillText(char, x, y);
 
       if(y > h && Math.random() > 0.985){ drops[i] = Math.floor(Math.random()*-20); speeds[i] = 0.25 + Math.random()*0.9; }
