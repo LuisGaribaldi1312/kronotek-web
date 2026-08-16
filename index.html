@@ -865,7 +865,7 @@ loadAll();
 /* ---------------- LLUVIA DE CÓDIGO (estilo Matrix) ---------------- */
 (function(){
   const canvas = document.getElementById('lightCanvas');
-  const ctx = canvas.getContext('3d');
+  const ctx = canvas.getContext('2d');
   let w, h, dpr, fontSize, columns, drops, speeds;
 
   const chars = "01KRONOTEK<>/{}[]#$%&アイウエオカキクケコサシスセソ";
@@ -906,7 +906,7 @@ loadAll();
       const x = i*fontSize + fontSize/2;
       const y = drops[i]*fontSize;
 
-      ctx.fillStyle = Math.random() > 0.25 ? 'rgba(190,220,255,0.7)' : 'rgba(46,139,255,0.4)';
+      ctx.fillStyle = Math.random() > 0.55 ? 'rgba(190,220,255,0.7)' : 'rgba(46,139,255,0.4)';
       ctx.fillText(char, x, y);
 
       if(y > h && Math.random() > 0.985){ drops[i] = Math.floor(Math.random()*-20); speeds[i] = 0.25 + Math.random()*0.9; }
